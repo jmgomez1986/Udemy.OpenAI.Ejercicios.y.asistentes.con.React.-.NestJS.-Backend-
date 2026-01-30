@@ -79,3 +79,5 @@ Este curso está pensado para realizar una integración de React con Vite, hacia
 
 - Seccion 02: Frontend - Diseño y creacion de la aplicacion
 - Seccion 03: Backend - Caso de uso - Ortografia
+- Seccion 04: Frontend - Ortografia
+- Seccion 05: Backend - ProsCons Discusser - Streams
