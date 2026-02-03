@@ -4,6 +4,7 @@ import {
   OrthographyDto,
   ProsConsDiscusserDto,
   ProsConsDiscusserStreamDto,
+  TranslateDto,
 } from './dtos';
 import type { Response } from 'express';
 
@@ -40,5 +41,10 @@ export class GptController {
     }
 
     res.end();
+  }
+
+  @Post('translate')
+  translate(@Body() translateDto: TranslateDto) {
+    return this.gptService.translate(translateDto);
   }
 }
