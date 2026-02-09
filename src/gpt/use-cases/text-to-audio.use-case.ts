@@ -12,10 +12,14 @@ export const textToAudioUseCase = async (
   { prompt, voice }: Options,
 ) => {
   const voices = {
+    alloy: 'alloy',
     ash: 'ash',
     ballad: 'ballad',
     coral: 'coral',
     echo: 'echo',
+    fable: 'fable',
+    nova: 'nova',
+    onyx: 'onyx',
     sage: 'sage',
     shimmer: 'shimmer',
     verse: 'verse',

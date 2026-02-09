@@ -3,3 +3,4 @@ export * from './pros-cons-discusser.dto';
 export * from './pros-cons-discusser-stream.dto';
 export * from './translate.dto';
 export * from './text-to-audio.dto';
+export * from './audio-to-text.dto';

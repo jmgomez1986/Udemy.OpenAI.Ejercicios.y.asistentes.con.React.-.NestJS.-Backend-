@@ -84,4 +84,6 @@ Este curso está pensado para realizar una integración de React con Vite, hacia
 - Seccion 06: Frontend - ProsCons Discusser - Streams
 - Seccion 07: Backend - Caso de uso - Traducciones
 - Seccion 08: Frontend - Caso de uso - Traducciones
-- Seccion 09: Backend - Texo a audio
+- Seccion 09: Backend - Texto a audio
+- Seccion 10: Frontend - Texto a audio
+- Seccion 11: Backend - Audio a texto
