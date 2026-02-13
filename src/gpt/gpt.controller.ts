@@ -19,6 +19,8 @@ import {
   ProsConsDiscusserStreamDto,
   TextToAudioDto,
   TranslateDto,
+  ImageGenerationDto,
+  ImageVariationDto,
 } from './dtos';
 import type { Response } from 'express';
 import { FileInterceptor } from '@nestjs/platform-express';
@@ -117,5 +119,26 @@ export class GptController {
     @Body() audioToTextDto: AudioToTextDto,
   ) {
     return this.gptService.audioToText(file, audioToTextDto);
+  }
+
+  @Post('image-generation')
+  async imageGeneration(@Body() imageGenerationDto: ImageGenerationDto) {
+    return await this.gptService.imageGeneration(imageGenerationDto);
+  }
+
+  @Get('image-generation/:fileName')
+  getImageGeneration(
+    @Param('fileName') fileName: string,
+    @Res() res: Response,
+  ) {
+    const filePath = this.gptService.getImageGeneration(fileName);
+    res.setHeader('Content-Type', 'image/png');
+    res.status(HttpStatus.OK);
+    res.sendFile(filePath);
+  }
+
+  @Post('image-variation')
+  async imageVariation(@Body() imageVariationDto: ImageVariationDto) {
+    return await this.gptService.imageVariation(imageVariationDto);
   }
 }

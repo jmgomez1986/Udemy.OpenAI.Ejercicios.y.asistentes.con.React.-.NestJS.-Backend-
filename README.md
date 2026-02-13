@@ -87,3 +87,5 @@ Este curso está pensado para realizar una integración de React con Vite, hacia
 - Seccion 09: Backend - Texto a audio
 - Seccion 10: Frontend - Texto a audio
 - Seccion 11: Backend - Audio a texto
+- Seccion 12: Frontend - Audio a texto
+- Seccion 13: Backend - Generacion de imagenes

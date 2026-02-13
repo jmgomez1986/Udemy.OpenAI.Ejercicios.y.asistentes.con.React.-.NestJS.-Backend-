@@ -3,6 +3,8 @@ import * as fs from 'fs';
 import { Injectable, NotFoundException } from '@nestjs/common';
 import {
   audioToTextUseCase,
+  imageGenerationUseCase,
+  imageVariationUseCase,
   orthographyCheckUseCase,
   prosConsDiscusserStreamUseCase,
   prosConsDiscusserUseCase,
@@ -11,6 +13,7 @@ import {
 } from './use-cases';
 import {
   AudioToTextDto,
+  ImageVariationDto,
   OrthographyDto,
   ProsConsDiscusserDto,
   ProsConsDiscusserStreamDto,
@@ -19,6 +22,8 @@ import {
 } from './dtos';
 import OpenAI from 'openai';
 import { OrthographyCheckResponse, TranslateResponse } from './interfaces';
+import { ImageGenerationDto } from './dtos/image-generation.dto';
+import { generate } from 'rxjs';
 
 @Injectable()
 export class GptService {
@@ -83,11 +88,27 @@ export class GptService {
   ) {
     const { prompt } = audioToTextDto;
 
-    console.log('Received file:', audioFile);
-    console.log('Received prompt:', prompt);
     return await audioToTextUseCase(this.openai, {
       audioFile,
       prompt,
     });
+  }
+
+  async imageGeneration(imageGenerationDto: ImageGenerationDto) {
+    return await imageGenerationUseCase(this.openai, { ...imageGenerationDto });
+  }
+
+  getImageGeneration(fileName: string) {
+    const filePath = path.resolve('./', './generated/images', fileName);
+
+    const wasFound = fs.existsSync(filePath);
+    if (!wasFound) {
+      throw new NotFoundException(`File with ID ${fileName} not found`);
+    }
+    return filePath;
+  }
+
+  async imageVariation({ baseImage }: ImageVariationDto) {
+    return await imageVariationUseCase(this.openai, { baseImage });
   }
 }
