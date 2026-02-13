@@ -41,15 +41,20 @@ const getEditedImage = async (
   const pngImagePath = await downloadImageAsPng(originalImage, true);
   const maskPath = await downloadBase64ImageAsPng(maskImage, true);
 
+  const imageBuffer = fs.readFileSync(pngImagePath);
+  const maskBuffer = fs.readFileSync(maskPath);
+  const imageFile = new File([imageBuffer], 'image.png', {
+    type: 'image/png',
+  });
+  const maskFile = new File([maskBuffer], 'mask.png', {
+    type: 'image/png',
+  });
+
   const response = await openai.images.edit({
     model: 'dall-e-2',
     prompt,
-    image: await toFile(fs.createReadStream(pngImagePath), null, {
-      type: 'image/png',
-    }), // fs.createReadStream(pngImagePath),
-    mask: await toFile(fs.createReadStream(maskPath), null, {
-      type: 'image/png',
-    }), // fs.createReadStream(maskPath),
+    image: imageFile, // fs.createReadStream(pngImagePath
+    mask: maskFile, // fs.createReadStream(maskPath),
     n: 1,
     size: '1024x1024',
     response_format: 'url',
