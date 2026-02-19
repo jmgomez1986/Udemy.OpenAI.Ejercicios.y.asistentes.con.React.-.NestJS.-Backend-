@@ -23,7 +23,6 @@ import {
 import OpenAI from 'openai';
 import { OrthographyCheckResponse, TranslateResponse } from './interfaces';
 import { ImageGenerationDto } from './dtos/image-generation.dto';
-import { generate } from 'rxjs';
 
 @Injectable()
 export class GptService {
